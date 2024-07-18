@@ -78,7 +78,21 @@
                         <h6>Soeng Souy</h6>
                         <p class="text-muted mb-0">Administrator</p>
                     </div>
-                </div> <a class="dropdown-item" href="profile.html">My Profile</a> <a class="dropdown-item" href="settings.html">Account Settings</a> <a class="dropdown-item" href="login.html">Logout</a> </div>
+                </div> <a class="dropdown-item" href="profile.html">My Profile</a> <a class="dropdown-item" href="settings.html">Account Settings</a> 
+                
+                {{-- <a class="dropdown-item" href="login.html">Logout</a>  --}}
+
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+
+            </div>
         </li>
     </ul>
     <div class="top-nav-search">

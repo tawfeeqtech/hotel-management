@@ -21,7 +21,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Email Address') }}" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Email Address') }}" name="email" value="{{ old('email') }}" required autocomplete="email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -29,7 +29,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input id="password" type="text" placeholder="{{ __('Password') }}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input id="password" type="password" placeholder="{{ __('Password') }}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input id="password-confirm" placeholder="{{ __('Confirm Password') }}" type="text" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" placeholder="{{ __('Confirm Password') }}" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <div class="form-group mb-0">
                             <button type="submit" class="btn btn-primary btn-block">

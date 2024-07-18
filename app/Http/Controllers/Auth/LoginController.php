@@ -3,7 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Carbon\Carbon;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Brian2694\Toastr\Facades\Toastr;
 
 class LoginController extends Controller
 {
@@ -25,7 +33,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -34,7 +42,45 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+        $this->middleware('guest')->except([
+            'logout',
+            'locked',
+            'unlock'
+        ]);
     }
+
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        $email    = $request->email;
+        $password = $request->password;
+
+        if (Auth::attempt(['email'=>$email,'password'=>$password,'status'=>'Active'])) {
+            // Toastr::success('Login successfully :)','Success');
+            return redirect()->intended('home');
+        } elseif (Auth::attempt(['email'=>$email,'password'=>$password,'status'=> null])) {
+            // Toastr::success('Login successfully :)','Success');
+            return redirect()->intended('home');
+        } else {
+            // Toastr::error('fail, WRONG USERNAME OR PASSWORD :)','Error');
+            return redirect('login');
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        // Toastr::success('Logout successfully :)','Success');
+        return redirect('login');
+    }
+
 }
