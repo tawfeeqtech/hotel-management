@@ -11,5 +11,11 @@ class BookingController extends Controller
     {
         return view('pages.Booking.all-booking');
     }
+
+    // All Booking
+    public function bookingEdit()
+    {
+        return view('pages.Booking.edit');
+    }
     
 }
