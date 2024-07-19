@@ -1,7 +1,57 @@
-@extends('layouts.app')
+@extends('layouts.master-login')
+@section('title', 'Reset Password')
 
 @section('content')
-<div class="container">
+
+
+<div class="login-wrapper">
+    <div class="container">
+        <div class="loginbox">
+            <div class="login-left"> <img class="img-fluid" src="{{URL::to('assets/img/logo.png')}}" alt="Logo"> </div>
+            <div class="login-right">
+                <div class="login-right-wrap">
+                    <h1 class="mb-3">Reset Password</h1>
+                    <form method="POST" action="/reset-password">
+                        @csrf
+                        
+                        <input type="hidden" name="token" value="{{ $token }}">
+
+                        <div class="form-group">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Email Address') }}" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <input id="password" type="password" placeholder="{{ __('Password') }}" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}"  required autocomplete="new-password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <input id="password-confirm" placeholder="{{ __('Confirm Password') }}" type="password" class="form-control" name="password_confirmation"  value="{{ old('password_confirmation') }}"  required autocomplete="new-password">
+                        </div>
+                        
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                {{ __('Register') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -62,5 +112,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+
 @endsection

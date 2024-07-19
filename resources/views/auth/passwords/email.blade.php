@@ -1,5 +1,5 @@
 @extends('layouts.master-login')
-@section('title', 'Reset Password')
+@section('title', 'Forgot Password')
 
 @section('content')
 
