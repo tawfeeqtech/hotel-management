@@ -22,7 +22,7 @@ class ForgotPasswordController extends Controller
         $request->validate([
             'email' => 'required|email|exists:users',
         ]);
-
+        
         $token = Str::random(60);
 
         DB::table('password_resets')->insert(
@@ -34,7 +34,7 @@ class ForgotPasswordController extends Controller
                   $message->to('tawfeeqfalah@hotmail.com');
                   $message->subject('Reset Password Notification');
                });
-        // Toastr::success('We have e-mailed your password reset link! :)','Success');
+        toastr()->success('We have e-mailed your password reset link! :');
         return back();
     }
 }

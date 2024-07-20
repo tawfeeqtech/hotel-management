@@ -104,7 +104,7 @@ class RegisterController extends Controller
             'role_name' => $request->role_name,
             'password'  => Hash::make($request->password),
         ]);
-        // Toastr::success('Create new account successfully :)','Success');
+        toastr()->success('Create new account successfully :');
         return redirect('login');
     }
 

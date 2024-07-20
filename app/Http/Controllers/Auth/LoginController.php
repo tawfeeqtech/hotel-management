@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Brian2694\Toastr\Facades\Toastr;
 
 class LoginController extends Controller
 {
@@ -65,13 +64,13 @@ class LoginController extends Controller
         $password = $request->password;
 
         if (Auth::attempt(['email'=>$email,'password'=>$password,'status'=>'Active'])) {
-            // Toastr::success('Login successfully :)','Success');
+            toastr()->success('Login successfully :');
             return redirect()->intended('home');
         } elseif (Auth::attempt(['email'=>$email,'password'=>$password,'status'=> null])) {
-            // Toastr::success('Login successfully :)','Success');
+            toastr()->success('Login successfully :');
             return redirect()->intended('home');
         } else {
-            // Toastr::error('fail, WRONG USERNAME OR PASSWORD :)','Error');
+            toastr()->error('fail, WRONG USERNAME OR PASSWORD :');
             return redirect('login');
         }
     }
@@ -79,7 +78,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        // Toastr::success('Logout successfully :)','Success');
+        toastr()->success('Login successfully :');
         return redirect('login');
     }
 

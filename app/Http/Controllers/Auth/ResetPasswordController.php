@@ -24,12 +24,12 @@ class ResetPasswordController extends Controller
 
         $updatePassword = DB::table('password_resets')->where(['email' => $request->email, 'token' => $request->token])->first();
         if (!$updatePassword) {
-            // Toastr::error('Invalid token! :)','Error');
+            toastr()->error('Invalid token! :');
             return back();
         } else {
             $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
             DB::table('password_resets')->where(['email'=> $request->email])->delete();
-            // Toastr::success('Your password has been changed! :)','Success');
+            toastr()->success('Your password has been changed! :');
             return redirect('/login');
         }
        
