@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('depature_date')->nullable();
             $table->string('email')->nullable();
             $table->string('ph_number')->nullable();
-            $table->string('status')->nullable();
+            $table->string('fileupload')->nullable();
+            $table->string('message')->nullable();
             $table->timestamps();
         });
     }
