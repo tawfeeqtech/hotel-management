@@ -66,3 +66,4 @@ Route::get('form/booking/add', [App\Http\Controllers\BookingController::class, '
 
 Route::post('form/booking/save', [App\Http\Controllers\BookingController::class, 'saveRecord'])->middleware('auth')->name('form.booking.save');
 
+Route::post('form/booking/delete', [App\Http\Controllers\BookingController::class, 'deleteRecord'])->middleware('auth')->name('form.booking.delete');

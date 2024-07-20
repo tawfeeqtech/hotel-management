@@ -12,22 +12,23 @@ class BookingController extends Controller
     // All Booking
     public function allBooking()
     {
-        return view('pages.Booking.all-booking');
+        $allBookings = DB::table('bookings')->get();
+        return view('pages.Booking.all-booking',compact('allBookings'));
     }
 
-    // All Booking
-    public function bookingEdit()
+    // edit Booking
+    public function bookingEdit($bkg_id)
     {
-        return view('pages.Booking.edit');
+        $bookingEdit = DB::table('bookings')->where('bkg_id',$bkg_id)->first();
+        return view('pages.Booking.edit',compact('bookingEdit'));
     }
     
     // booking add
     public function bookingAdd()
     {
-        // $data = DB::table('room_types')->get();
-        // $user = DB::table('users')->get();
-        // return view('pages.Booking.create',compact('data','user'));
-        return view('pages.Booking.create');
+        $data = DB::table('room_types')->get();
+        $user = DB::table('users')->get();
+        return view('pages.Booking.create',compact('data','user'));
     }
 
     public function saveRecord(Request $request)
