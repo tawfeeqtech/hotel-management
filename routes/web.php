@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoomsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -80,4 +81,7 @@ Route::post('bookings/delete', [App\Http\Controllers\BookingController::class, '
 
 Route::resource('customers', CustomerController::class)->except('destroy');
 Route::post('customers/delete', [CustomerController::class, 'destroy'])->middleware('auth')->name('customers.delete');
+
+Route::resource('rooms', RoomsController::class)->except('destroy');
+Route::post('rooms/delete', [RoomsController::class, 'destroy'])->middleware('auth')->name('rooms.delete');
 
