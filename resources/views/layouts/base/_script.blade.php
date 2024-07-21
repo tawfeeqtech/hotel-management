@@ -11,7 +11,6 @@
 
 @stack('scripts')
 
-
 <script src="{{asset('assets/js/script.js')}}"></script>
 
 @stack('script')

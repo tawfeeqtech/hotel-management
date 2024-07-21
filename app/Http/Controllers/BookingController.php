@@ -10,28 +10,28 @@ use Illuminate\Support\Facades\DB;
 class BookingController extends Controller
 {
     // All Booking
-    public function allBooking()
+    public function index()
     {
-        $allBookings = DB::table('bookings')->get();
-        return view('pages.Booking.all-booking',compact('allBookings'));
+        $Bookings = DB::table('bookings')->get();
+        return view('pages.booking.index',compact('Bookings'));
     }
 
     // edit Booking
-    public function bookingEdit($bkg_id)
+    public function edit($bkg_id)
     {
         $bookingEdit = DB::table('bookings')->where('bkg_id',$bkg_id)->first();
-        return view('pages.Booking.edit',compact('bookingEdit'));
+        return view('pages.booking.edit',compact('bookingEdit'));
     }
     
     // booking add
-    public function bookingAdd()
+    public function create()
     {
         $data = DB::table('room_types')->get();
         $user = DB::table('users')->get();
-        return view('pages.Booking.create',compact('data','user'));
+        return view('pages.booking.create',compact('data','user'));
     }
 
-    public function saveRecord(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name'   => 'required|string|max:255',
@@ -47,6 +47,7 @@ class BookingController extends Controller
             'message'    => 'required|string|max:255',
         ]);
 
+        
         DB::beginTransaction();
         try {
 
@@ -71,7 +72,7 @@ class BookingController extends Controller
             
             DB::commit();
             toastr()->success('Create new booking successfully :');
-            return redirect()->route('form.allBooking');
+            return redirect()->route('bookings.index');
 
         } catch(\Exception $e) {
             DB::rollback();
@@ -83,7 +84,7 @@ class BookingController extends Controller
     }
 
     // update record
-    public function updateRecord(Request $request)
+    public function update(Request $request)
     {
         DB::beginTransaction();
         try {
@@ -124,7 +125,7 @@ class BookingController extends Controller
     }
 
     // delete record booking
-    public function deleteRecord(Request $request)
+    public function destroy(Request $request)
     {
         try {
 

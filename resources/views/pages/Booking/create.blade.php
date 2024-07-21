@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <form action="{{ route('form.booking.save') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('bookings.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-lg-12">
@@ -29,10 +29,9 @@
                                 <label>Name</label>
                                 <select class="form-control @error('name') is-invalid @enderror" id="sel1" name="name" value="{{ old('name') }}">
                                     <option selected disabled> --Select Name-- </option>
-                                    <option value="admin">Admin</option>
-                                    {{-- @foreach ($user as $users )
+                                    @foreach ($user as $users )
                                     <option value="{{ $users->name }}">{{ $users->name }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -41,10 +40,9 @@
                                 <label>Room Type</label>
                                 <select class="form-control @error('room_type') is-invalid @enderror" id="sel2" name="room_type">
                                     <option selected disabled> --Select Room Type-- </option>
-                                    <option value="1">1</option>
-                                    {{-- @foreach ($data as $items )
+                                    @foreach ($data as $items )
                                     <option value="{{ $items->room_name }}">{{ $items->room_name }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

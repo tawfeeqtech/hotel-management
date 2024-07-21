@@ -38,27 +38,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($allCustomers as $customers )
+                                    @foreach ($customers as $customer )
                                     <tr>
-                                        <td hidden class="id">{{ $customers->id }}</td>
-                                        <td hidden class="fileupload">{{ $customers->fileupload }}</td>
-                                        <td>{{ $customers->bkg_customer_id }}</td>
+                                        <td hidden class="id">{{ $customer->id }}</td>
+                                        <td hidden class="fileupload">{{ $customer->fileupload }}</td>
+                                        <td>{{ $customer->bkg_customer_id }}</td>
                                         <td>
                                             <h2 class="table-avatar">
                                                 <a href="profile.html" class="avatar avatar-sm mr-2">
-                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/'.$customers->fileupload) }}" alt="{{ $customers->fileupload }}">
+                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/'.$customer->fileupload) }}" alt="{{ $customer->fileupload }}">
                                                 </a>
-                                                <a href="profile.html">{{ $customers->name }}<span>{{ $customers->bkg_customer_id }}</span></a>
+                                                <a href="profile.html">{{ $customer->name }}<span>{{ $customer->bkg_customer_id }}</span></a>
                                             </h2>
                                         </td>
-                                        <td>{{ $customers->room_type }}</td>
-                                        <td>{{ $customers->total_numbers }}</td>
-                                        <td>{{ $customers->date }}</td>
-                                        <td>{{ $customers->time }}</td>
-                                        <td>{{ $customers->arrival_date }}</td>
-                                        <td>{{ $customers->depature_date }}</td>
-                                        <td><a href="#" class="__cf_email__" data-cfemail="2652494b4b5f44435448474a66435e474b564a430845494b">{{ $customers->email }}</a></td>
-                                        <td>{{ $customers->ph_number }}</td>
+                                        <td>{{ $customer->room_type }}</td>
+                                        <td>{{ $customer->total_numbers }}</td>
+                                        <td>{{ $customer->date }}</td>
+                                        <td>{{ $customer->time }}</td>
+                                        <td>{{ $customer->arrival_date }}</td>
+                                        <td>{{ $customer->depature_date }}</td>
+                                        <td><a href="#" class="__cf_email__" data-cfemail="2652494b4b5f44435448474a66435e474b564a430845494b">{{ $customer->email }}</a></td>
+                                        <td>{{ $customer->ph_number }}</td>
                                         <td>
                                             <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>
                                         </td>
@@ -68,7 +68,7 @@
                                                     <i class="fas fa-ellipsis-v ellipse_color"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="{{ url('form/customer/edit/'.$customers->bkg_customer_id) }}">
+                                                    <a class="dropdown-item" href="{{ url('customers/'.$customer->bkg_customer_id . '/edit') }}">
                                                         <i class="fas fa-pencil-alt m-r-5"></i> Edit
                                                     </a>
                                                     <a class="dropdown-item customerDelete" href="#" data-toggle="modal" data-target="#delete_asset">
@@ -78,7 +78,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    @endforeach  --}}
+                                    @endforeach 
                                 </tbody>
                             </table>
                         </div>

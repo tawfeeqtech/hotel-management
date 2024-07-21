@@ -11,7 +11,7 @@
                 <div class="col">
                     <div class="mt-5">
                         <h4 class="card-title float-left mt-2">Appointments</h4>
-                        <a href="{{route('form.booking.add')}}" class="btn btn-primary float-right veiwbutton ">Add Booking</a>
+                        <a href="{{route('bookings.create')}}" class="btn btn-primary float-right veiwbutton ">Add Booking</a>
                     </div>
                 </div>
             </div>
@@ -39,27 +39,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($allBookings as $bookings )
+                                    @foreach ($Bookings as $booking )
                                         <tr>
-                                            <td hidden class="id">{{ $bookings->id }}</td>
-                                            <td hidden class="fileupload">{{ $bookings->fileupload }}</td>
-                                            <td>{{ $bookings->bkg_id }}</td>
+                                            <td hidden class="id">{{ $booking->id }}</td>
+                                            <td hidden class="fileupload">{{ $booking->fileupload }}</td>
+                                            <td>{{ $booking->bkg_id }}</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                 <a href="profile.html" class="avatar avatar-sm mr-2">
-                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/'.$bookings->fileupload) }}" alt="{{ $bookings->fileupload }}">
+                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/'.$booking->fileupload) }}" alt="{{ $booking->fileupload }}">
                                                 </a>
-                                                <a href="profile.html">{{ $bookings->name }}<span>{{ $bookings->bkg_id }}</span></a>
+                                                <a href="profile.html">{{ $booking->name }}<span>{{ $booking->bkg_id }}</span></a>
                                                 </h2>
                                             </td>
-                                            <td>{{ $bookings->room_type }}</td>
-                                            <td>{{ $bookings->total_numbers }}</td>
-                                            <td>{{ $bookings->date }}</td>
-                                            <td>{{ $bookings->time }}</td>
-                                            <td>{{ $bookings->arrival_date }}</td>
-                                            <td>{{ $bookings->depature_date }}</td>
-                                            <td><a href="#" class="__cf_email__" data-cfemail="2652494b4b5f44435448474a66435e474b564a430845494b">{{ $bookings->email }}</a></td>
-                                            <td>{{ $bookings->ph_number }}</td>
+                                            <td>{{ $booking->room_type }}</td>
+                                            <td>{{ $booking->total_numbers }}</td>
+                                            <td>{{ $booking->date }}</td>
+                                            <td>{{ $booking->time }}</td>
+                                            <td>{{ $booking->arrival_date }}</td>
+                                            <td>{{ $booking->depature_date }}</td>
+                                            <td><a href="#" class="__cf_email__" data-cfemail="2652494b4b5f44435448474a66435e474b564a430845494b">{{ $booking->email }}</a></td>
+                                            <td>{{ $booking->ph_number }}</td>
                                             <td>
                                                 <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>
                                             </td>
@@ -69,7 +69,7 @@
                                                         <i class="fas fa-ellipsis-v ellipse_color"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="{{ url('form/booking/edit/'.$bookings->bkg_id) }}">
+                                                        <a class="dropdown-item" href="{{ url('bookings/edit/'.$booking->bkg_id) }}">
                                                             <i class="fas fa-pencil-alt m-r-5"></i> Edit
                                                         </a>
                                                         <a class="dropdown-item bookingDelete" href="#" data-toggle="modal" data-target="#delete_asset">
@@ -92,7 +92,7 @@
      <div id="delete_asset" class="modal fade delete-modal" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="{{ route('form.booking.delete') }}" method="POST">
+                <form action="{{ route('bookings.delete') }}" method="POST">
                     @csrf
                     <div class="modal-body text-center"> <img src="{{ URL::to('assets/img/sent.png') }}" alt="" width="50" height="46">
                         <h3 class="delete_class">Are you sure want to delete this Asset?</h3>

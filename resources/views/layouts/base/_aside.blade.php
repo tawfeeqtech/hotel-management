@@ -6,16 +6,16 @@
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a class="{{ request()->is('form/allBooking*') ? 'active' : '' }}" href="{{route('form.allBooking')}}"> All Booking </a></li>
-                        <li><a class="{{ request()->is('form/booking/edit/*') ? 'active' : '' }}" href="#"> Edit Booking </a></li>
-                        <li><a href="add-booking.html"> Add Booking </a></li>
+                        <li><a class="{{ request()->is('bookings') ? 'active' : '' }}" href="{{route('bookings.index')}}"> All Booking </a></li>
+                        <li><a class="{{ request()->is('bookings/edit/*') ? 'active' : '' }}" href="#"> Edit Booking </a></li>
+                        <li><a class="{{ request()->is('bookings/create*') ? 'active' : '' }}" href="{{route('bookings.create')}}"> Add Booking </a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a class="{{ request()->is('customers*') ? 'active' : '' }}" href="{{route('customers.index')}}"> All customers </a></li>
-                        <li><a href="edit-customer.html"> Edit Customer </a></li>
-                        <li><a href="add-customer.html"> Add Customer </a></li>
+                        <li><a class="{{ request()->is('customers') ? 'active' : '' }}" href="{{route('customers.index')}}"> All customers </a></li>
+                        <li><a class="{{ request()->is('customers/*/edit') ? 'active' : '' }}" href="#"> Edit Customer </a></li>
+                        <li><a class="{{ request()->is('customers/create*') ? 'active' : '' }}" href="{{route('customers.create')}}"> Add Customer </a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Rooms </span> <span class="menu-arrow"></span></a>

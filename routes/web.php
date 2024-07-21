@@ -61,13 +61,13 @@ Route::get('reset-password/{token}', [App\Http\Controllers\Auth\ResetPasswordCon
 Route::post('reset-password', [App\Http\Controllers\Auth\ResetPasswordController::class, 'updatePassword']);
 
 // ----------------------------- Booking -----------------------------//
-Route::get('form/allBooking', [App\Http\Controllers\BookingController::class, 'allBooking'])->middleware('auth')->name('form.allBooking');
-Route::get('form/booking/edit/{bkg_id}', [App\Http\Controllers\BookingController::class, 'bookingEdit'])->name('form.Booking.edit');
-Route::get('form/booking/add', [App\Http\Controllers\BookingController::class, 'bookingAdd'])->middleware('auth')->name('form.booking.add');
+Route::get('bookings', [App\Http\Controllers\BookingController::class, 'index'])->middleware('auth')->name('bookings.index');
+Route::get('bookings/edit/{bkg_id}', [App\Http\Controllers\BookingController::class, 'edit'])->name('bookings.edit');
+Route::get('bookings/create', [App\Http\Controllers\BookingController::class, 'create'])->middleware('auth')->name('bookings.create');
 
-Route::post('form/booking/save', [App\Http\Controllers\BookingController::class, 'saveRecord'])->middleware('auth')->name('form.booking.save');
-Route::post('form/booking/update', [App\Http\Controllers\BookingController::class, 'updateRecord'])->middleware('auth')->name('form.booking.update');
-Route::post('form/booking/delete', [App\Http\Controllers\BookingController::class, 'deleteRecord'])->middleware('auth')->name('form.booking.delete');
+Route::post('bookings/store', [App\Http\Controllers\BookingController::class, 'store'])->middleware('auth')->name('bookings.store');
+Route::post('bookings/update', [App\Http\Controllers\BookingController::class, 'update'])->middleware('auth')->name('bookings.update');
+Route::post('bookings/delete', [App\Http\Controllers\BookingController::class, 'destroy'])->middleware('auth')->name('bookings.delete');
 
 
 // ----------------------------- customers -----------------------------//
