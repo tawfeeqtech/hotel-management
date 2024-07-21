@@ -47,7 +47,7 @@
                                             <td>
                                                 <h2 class="table-avatar">
                                                 <a href="profile.html" class="avatar avatar-sm mr-2">
-                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/'.$booking->fileupload) }}" alt="{{ $booking->fileupload }}">
+                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/booking/'.$booking->fileupload) }}" alt="{{ $booking->fileupload }}">
                                                 </a>
                                                 <a href="profile.html">{{ $booking->name }}<span>{{ $booking->bkg_id }}</span></a>
                                                 </h2>

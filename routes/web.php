@@ -78,5 +78,6 @@ Route::post('bookings/delete', [App\Http\Controllers\BookingController::class, '
 // Route::post('form/customer/update', [App\Http\Controllers\CustomerController::class, 'updateRecord'])->middleware('auth')->name('form/customer/update');
 // Route::post('form/customer/delete', [App\Http\Controllers\CustomerController::class, 'deleteRecord'])->middleware('auth')->name('form/customer/delete');
 
-Route::resource('customers', CustomerController::class);
+Route::resource('customers', CustomerController::class)->except('destroy');
+Route::post('customers/delete', [CustomerController::class, 'destroy'])->middleware('auth')->name('customers.delete');
 

@@ -46,7 +46,7 @@
                                         <td>
                                             <h2 class="table-avatar">
                                                 <a href="profile.html" class="avatar avatar-sm mr-2">
-                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/'.$customer->fileupload) }}" alt="{{ $customer->fileupload }}">
+                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/customers/'.$customer->fileupload) }}" alt="{{ $customer->fileupload }}">
                                                 </a>
                                                 <a href="profile.html">{{ $customer->name }}<span>{{ $customer->bkg_customer_id }}</span></a>
                                             </h2>
@@ -93,7 +93,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                    <form action="#" method="POST"> 
+                    <form action="{{ route('customers.delete') }}  " method="POST"> 
                          {{-- {{ route('customers.destroy') }}  --}}
                         @csrf
                         <img src="{{ URL::to('assets/img/sent.png') }}" alt="" width="50" height="46">

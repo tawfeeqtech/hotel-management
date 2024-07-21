@@ -115,7 +115,7 @@
                                         value="{{ $customerEdit->fileupload }}">
                                     <a href="profile.html" class="avatar avatar-sm mr-2">
                                         <img class="avatar-img rounded-circle"
-                                            src="{{ URL::to('/assets/upload/' . $customerEdit->fileupload) }}"
+                                            src="{{ URL::to('/assets/upload/customers/' . $customerEdit->fileupload) }}"
                                             alt="{{ $customerEdit->fileupload }}">
                                     </a>
                                     <label class="custom-file-label" for="customFile">Choose file</label>

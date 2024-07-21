@@ -53,7 +53,7 @@ class BookingController extends Controller
 
             $photo= $request->fileupload;
             $file_name = rand() . '.' .$photo->getClientOriginalName();
-            $photo->move(public_path('/assets/upload/'), $file_name);
+            $photo->move(public_path('/assets/upload/booking/'), $file_name);
            
             $booking = new Booking;
             $booking->name = $request->name;
@@ -92,7 +92,13 @@ class BookingController extends Controller
             if (!empty($request->fileupload)) {
                 $photo = $request->fileupload;
                 $file_name = rand() . '.' . $photo->getClientOriginalExtension();
-                $photo->move(public_path('/assets/upload/'), $file_name);
+                $photo->move(public_path('/assets/upload/booking/'), $file_name);
+
+                $old_path_file = Booking::where('bkg_id',$request->bkg_id)->select('fileupload')->first();
+                $old_path_file = $old_path_file->fileupload;
+                unlink('assets/upload/booking/' . $old_path_file);
+
+
             } else {
                 $file_name = $request->hidden_fileupload;
             }
@@ -116,11 +122,11 @@ class BookingController extends Controller
         
             DB::commit();
             toastr()->success('Updated booking successfully :');
-            return redirect()->back();
+            return redirect()->route('bookings.index');
         } catch(\Exception $e) {
             DB::rollback();
             toastr()->error('Update booking fail! :');
-            return redirect()->back();
+            return redirect()->route('bookings.index');
         }
     }
 
@@ -130,7 +136,7 @@ class BookingController extends Controller
         try {
 
             Booking::destroy($request->id);
-            unlink('assets/upload/'.$request->fileupload);
+            unlink('assets/upload/booking/'.$request->fileupload);
             toastr()->success('Booking deleted successfully :');
             return redirect()->back();
         

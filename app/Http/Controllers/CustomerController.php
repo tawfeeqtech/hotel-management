@@ -14,7 +14,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = DB::table('customers')->get();
-        return view('pages.customers.index',compact('customers'));
+        return view('pages.customers.index', compact('customers'));
         // return view('pages.Customers.index');
     }
 
@@ -25,7 +25,7 @@ class CustomerController extends Controller
     {
         $data = DB::table('room_types')->get();
         $user = DB::table('users')->get();
-        return view('pages.customers.create',compact('data','user'));
+        return view('pages.customers.create', compact('data', 'user'));
     }
 
     /**
@@ -49,10 +49,10 @@ class CustomerController extends Controller
         DB::beginTransaction();
         try {
 
-            $photo= $request->fileupload;
-            $file_name = rand() . '.' .$photo->getClientOriginalName();
-            $photo->move(public_path('/assets/upload/'), $file_name);
-           
+            $photo = $request->fileupload;
+            $file_name = rand() . '.' . $photo->getClientOriginalName();
+            $photo->move(public_path('/assets/upload/customers/'), $file_name);
+
             $customer = new Customer;
             $customer->name = $request->name;
             $customer->room_type     = $request->room_type;
@@ -66,13 +66,12 @@ class CustomerController extends Controller
             $customer->fileupload  = $file_name;
             $customer->message     = $request->message;
             $customer->save();
-            
+
             DB::commit();
 
             toastr()->success('Create new customer successfully :');
             return redirect()->route('customers.index');
-            
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();
 
             toastr()->error('Add Customer fail! :');
@@ -93,8 +92,8 @@ class CustomerController extends Controller
      */
     public function edit($bkg_customer_id)
     {
-        $customerEdit = DB::table('customers')->where('bkg_customer_id',$bkg_customer_id)->first();
-        return view('pages.customers.edit',compact('customerEdit'));
+        $customerEdit = DB::table('customers')->where('bkg_customer_id', $bkg_customer_id)->first();
+        return view('pages.customers.edit', compact('customerEdit'));
     }
 
     /**
@@ -108,7 +107,12 @@ class CustomerController extends Controller
             if (!empty($request->fileupload)) {
                 $photo = $request->fileupload;
                 $file_name = rand() . '.' . $photo->getClientOriginalExtension();
-                $photo->move(public_path('/assets/upload/'), $file_name);
+                $photo->move(public_path('/assets/upload/customers/'), $file_name);
+
+                $old_path_file = Customer::where('bkg_customer_id', $request->bkg_customer_id)->select('fileupload')->first();
+                $old_path_file = $old_path_file->fileupload;
+                unlink('assets/upload/customers/' . $old_path_file);
+
             } else {
                 $file_name = $request->hidden_fileupload;
             }
@@ -124,26 +128,35 @@ class CustomerController extends Controller
                 'depature_date'  => $request->depature_date,
                 'email'   => $request->email,
                 'ph_number' => $request->phone_number,
-                'fileupload'=> $file_name,
+                'fileupload' => $file_name,
                 'message'   => $request->message,
             ];
-            Customer::where('bkg_customer_id',$request->bkg_customer_id)->update($update);
+            Customer::where('bkg_customer_id', $request->bkg_customer_id)->update($update);
             DB::commit();
             toastr()->success('Updated customer successfully :');
             return redirect()->route('customers.index');
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();
             toastr()->error('Update customer fail! :');
             // return redirect()->back();
-           return redirect()->route('customers.index');
+            return redirect()->route('customers.index');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            Customer::destroy($request->id);
+            unlink('assets/upload/customers/' . $request->fileupload);
+            toastr()->success('Customer deleted successfully :');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            toastr()->error('Customer delete fail! :');
+            dd($e->getMessage());
+            // return redirect()->route('customers.index');
+        }
     }
 }
