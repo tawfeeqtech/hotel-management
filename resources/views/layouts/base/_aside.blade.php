@@ -7,7 +7,7 @@
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a class="{{ request()->is('form/allBooking*') ? 'active' : '' }}" href="{{route('form.allBooking')}}"> All Booking </a></li>
-                        <li><a class="{{ request()->is('form/booking/edit*') ? 'active' : '' }}" href="{{route('form.Booking.edit')}}"> Edit Booking </a></li>
+                        <li><a class="{{ request()->is('form/booking/edit/*') ? 'active' : '' }}" href="#"> Edit Booking </a></li>
                         <li><a href="add-booking.html"> Add Booking </a></li>
                     </ul>
                 </li>
