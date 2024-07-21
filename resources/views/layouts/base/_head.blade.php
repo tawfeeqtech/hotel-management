@@ -9,15 +9,7 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome/css/all.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('assets/css/feathericon.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
-
+<!-- Custom Page Style -->
 @stack('style')
 
-
 <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-
-{{-- <link rel="stylesheet" href="{{URL::to('')}}assets/css/bootstrap.min.css"> --}}
-
-{{-- 
-<link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
- --}}

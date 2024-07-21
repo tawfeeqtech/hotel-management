@@ -2,6 +2,11 @@
 @extends('layouts.master')
 @section('title', 'Hotel Dashboard')
 
+@push('style')
+<link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
+    
+@endpush
+
 {{-- Content --}}
 @section('content')
 <div class="page-wrapper">
@@ -9,7 +14,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12 mt-5">
-                    <h3 class="page-title mt-3">Good Morning {{Auth::user()->name}}!</h3>
+                    <h3 class="page-title mt-3">Good Morning {{ Auth::user()->name }}!</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ul>
@@ -119,7 +124,7 @@
                                     <tr>
                                         <th>Booking ID</th>
                                         <th>Name</th>
-                                        <th>Email ID</th>
+                                        <th>Email</th>
                                         <th>Aadhar Number</th>
                                         <th class="text-center">Room Type</th>
                                         <th class="text-right">Number</th>
@@ -127,71 +132,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($Bookings as $booking )
                                     <tr>
                                         <td class="text-nowrap">
-                                            <div>BKG-0001</div>
+                                            <div>{{ $booking->bkg_id }}</div>
                                         </td>
-                                        <td class="text-nowrap">Tommy Bernal</td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a">[email&#160;protected]</a></td>
-                                        <td>12414786454545</td>
-                                        <td class="text-center">Double</td>
+                                        <td class="text-nowrap">{{ $booking->name }}</td>
+                                        <td><a href="#" class="__cf_email__">{{ $booking->email }}</a></td>
+                                        <td>{{ $booking->total_numbers }}</td>
+                                        <td class="text-center">{{ $booking->room_type }}</td>
                                         <td class="text-right">
-                                            <div>631-254-6480</div>
+                                            <div>{{ $booking->ph_number }}</div>
                                         </td>
                                         <td class="text-center"> <span class="badge badge-pill bg-success inv-badge">INACTIVE</span> </td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div>BKG-0002</div>
-                                        </td>
-                                        <td class="text-nowrap">Ellen Thill</td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="89fbe0eae1e8fbedebfbe6ebfafdc9ecf1e8e4f9e5eca7eae6e4">[email&#160;protected]</a></td>
-                                        <td>5456223232322</td>
-                                        <td class="text-center">Double</td>
-                                        <td class="text-right">
-                                            <div>830-468-1042</div>
-                                        </td>
-                                        <td class="text-center"> <span class="badge badge-pill bg-success inv-badge">INACTIVE</span> </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div>BKG-0003</div>
-                                        </td>
-                                        <td class="text-nowrap">Corina Kelsey</td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="76131a1a1318021e1f1a1a36130e171b061a135815191b">[email&#160;protected]</a></td>
-                                        <td>454543232625</td>
-                                        <td class="text-center">Single</td>
-                                        <td class="text-right">
-                                            <div>508-335-5531</div>
-                                        </td>
-                                        <td class="text-center"> <span class="badge badge-pill bg-success inv-badge">INACTIVE</span> </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div>BKG-0004</div>
-                                        </td>
-                                        <td class="text-nowrap">Carolyn Lane</td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="50333f22393e313b353c23352910373d31393c7e333f3d">[email&#160;protected]</a></td>
-                                        <td>2368989562621</td>
-                                        <td class="text-center">Double</td>
-                                        <td class="text-right">
-                                            <div>262-260-1170</div>
-                                        </td>
-                                        <td class="text-center"> <span class="badge badge-pill bg-success inv-badge">INACTIVE</span> </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div>BKG-0005</div>
-                                        </td>
-                                        <td class="text-nowrap">Denise</td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c7f7d6e73706572707d72795c7b717d7570327f7371">[email&#160;protected]</a></td>
-                                        <td>3245455582287</td>
-                                        <td class="text-center">Single</td>
-                                        <td class="text-right">
-                                            <div>570-458-0070</div>
-                                        </td>
-                                        <td class="text-center"> <span class="badge badge-pill bg-success inv-badge">INACTIVE</span> </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -202,3 +157,8 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>
+    <script src="{{asset('assets/js/chart.morris.js')}}"></script>
+@endpush
