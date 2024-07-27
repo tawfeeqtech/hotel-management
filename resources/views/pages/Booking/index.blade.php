@@ -69,7 +69,8 @@
                                                         <i class="fas fa-ellipsis-v ellipse_color"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="{{ url('bookings/edit/'.$booking->bkg_id) }}">
+                                                        {{-- <a class="dropdown-item" href="{{ url('bookings/'.$booking->bkg_id.'/edit') }}"> --}}
+                                                        <a class="dropdown-item" href="{{ route('bookings.edit',$booking->bkg_id) }}">
                                                             <i class="fas fa-pencil-alt m-r-5"></i> Edit
                                                         </a>
                                                         <a class="dropdown-item bookingDelete" href="#" data-toggle="modal" data-target="#delete_asset">

@@ -41,8 +41,9 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('bookings.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('bookings.update',$bookingEdit->bkg_id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row formtype">

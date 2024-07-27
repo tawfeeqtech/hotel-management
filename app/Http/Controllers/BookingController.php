@@ -72,7 +72,7 @@ class BookingController extends Controller
             
             DB::commit();
             toastr()->success('Create new booking successfully :');
-            return redirect()->route('bookings.index');
+            return to_route('bookings.index');
 
         } catch(\Exception $e) {
             DB::rollback();
@@ -122,11 +122,11 @@ class BookingController extends Controller
         
             DB::commit();
             toastr()->success('Updated booking successfully :');
-            return redirect()->route('bookings.index');
+            return to_route('bookings.index');
         } catch(\Exception $e) {
             DB::rollback();
             toastr()->error('Update booking fail! :');
-            return redirect()->route('bookings.index');
+            return to_route('bookings.index');
         }
     }
 

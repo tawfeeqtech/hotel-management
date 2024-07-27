@@ -130,7 +130,8 @@ class RoomsController extends Controller
 
             DB::commit();
             toastr()->success('Updated room successfully :');
-            return redirect()->route('rooms.index');
+            // return redirect()->route('rooms.index');
+            return to_route('rooms.index');
         } catch (\Exception $e) {
             DB::rollback();
             toastr()->error('Update room fail! :');

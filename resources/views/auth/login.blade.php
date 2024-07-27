@@ -51,7 +51,7 @@
                             {{ __('Forgot Your Password?') }}
                         </a> --}}
 
-                    <div class="text-center forgotpass"><a href="{{ route('forget-password') }}">{{ __('Forgot Your Password?') }}</a> </div>
+                    <div class="text-center forgotpass"><a href="{{ route('forget.password') }}">{{ __('Forgot Your Password?') }}</a> </div>
 
                     <div class="login-or"> <span class="or-line"></span> <span class="span-or">or</span> </div>
                     <div class="social-login"> <span>Login with</span> <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="google"><i class="fab fa-google"></i></a> </div>
